@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        p, pre {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>System Info</h1>
+    <p><b>Name:</b> <span id="name"></span></p>
+    <p><b>Username:</b> <span id="username"></span></p>
+    <p><b>Server Time (IST):</b> <span id="serverTime"></span></p>
+    <pre id="topOutput"></pre>
+
+    <script>
+        document.getElementById('name').textContent = 'Your Full Name'; // Replace with your name
+        document.getElementById('username').textContent = 'System Username'; // Replace with actual username
+
+        // Function to format the current date and time to IST
+        function getISTTime() {
+            let date = new Date();
+            let options = {
+                timeZone: 'Asia/Kolkata',
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: false
+            };
+            return new Intl.DateTimeFormat('en-US', options).format(date);
+        }
+
+        document.getElementById('serverTime').textContent = getISTTime();
+
+        // Simulating top command output
+        function getTopOutput() {
+            return `
+PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+1   root      20   0   37920   5720   3816 S   0.0  0.1   0:02.30 systemd
+2   root      20   0   0       0       0   S   0.0  0.0   0:00.02 kthreadd
+... (more simulated output)
+            `;
+        }
+
+        document.getElementById('topOutput').textContent = getTopOutput();
+    </script>
+</body>
+</html>
